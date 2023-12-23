@@ -165,7 +165,7 @@ const Grid = ({ data }) => {
             </div>
             <div className="col col-8">
               <div className="row">
-                <LineChart width={300} height={300} data={medicalData}>
+                <LineChart width={200} height={300} data={medicalData}>
                   <CartesianGrid strokeDasharray="0 3" />
                   <XAxis
                     dataKey="name"
@@ -191,7 +191,7 @@ const Grid = ({ data }) => {
                     strokeWidth={2}
                   />
                 </LineChart>
-                <LineChart width={300} height={300} data={architecturalData}>
+                <LineChart width={200} height={300} data={architecturalData}>
                   <CartesianGrid strokeDasharray="0 3" />
                   <XAxis
                     dataKey="name"
@@ -217,7 +217,7 @@ const Grid = ({ data }) => {
                     strokeWidth={2}
                   />
                 </LineChart>
-                <LineChart width={300} height={300} data={lifelineData}>
+                <LineChart width={200} height={300} data={lifelineData}>
                   <CartesianGrid strokeDasharray="0 3" />
                   <XAxis
                     dataKey="name"
@@ -243,7 +243,7 @@ const Grid = ({ data }) => {
                     strokeWidth={2}
                   />
                 </LineChart>
-                <LineChart width={300} height={300} data={nscData}>
+                <LineChart width={200} height={300} data={nscData}>
                   <CartesianGrid strokeDasharray="0 3" />
                   <XAxis
                     dataKey="name"
@@ -269,7 +269,7 @@ const Grid = ({ data }) => {
                     strokeWidth={2}
                   />
                 </LineChart>
-                <LineChart width={300} height={300} data={structuralData}>
+                <LineChart width={200} height={300} data={structuralData}>
                   <CartesianGrid strokeDasharray="0 1" />
                   <XAxis
                     dataKey="name"
@@ -311,7 +311,7 @@ const Grid = ({ data }) => {
                     strokeWidth={2}
                   />
                 </LineChart>
-                <LineChart width={300} height={300} data={combinedData}>
+                <LineChart width={200} height={300} data={combinedData}>
                   <CartesianGrid strokeDasharray="0 1" />
                   <XAxis
                     dataKey="name"

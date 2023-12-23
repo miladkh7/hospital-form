@@ -100,36 +100,37 @@ const View = () => {
               <div>Hospital</div>
             </div>
             {expand ? (
-              <div className="hospitals">
-                {searchedData.map((item) => {
-                  return (
-                    <div class="form-group">
-                      <input
-                        type="checkbox"
-                        name={item.hospitalName}
-                        id={item.hospitalName}
-                        value={item.hospitalName}
-                        onChange={(e) => {
-                          setSelectedHospital(e.target.value);
-                        }}
-                      />
-                      <label for={item.hospitalName}>{item.hospitalName}</label>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : null}
-            {/* // <RadioButton
-              //   title=""
-              //   items={searchedData.map((item) => {
-              //     return {
-              //       label: item.hospitalName,
-              //       name: "hospital",
-              //     };
+              // <div className="hospitals">
+              //   {searchedData.map((item) => {
+              //     return (
+              //       <div class="form-group">
+              //         <input
+              //           type="checkbox"
+              //           name={item.hospitalName}
+              //           id={item.hospitalName}
+              //           value={item.hospitalName}
+              //           onChange={(e) => {
+              //             setSelectedHospital(e.target.value);
+              //           }}
+              //         />
+              //         <label for={item.hospitalName}>{item.hospitalName}</label>
+              //       </div>
+              //     );
               //   })}
-              //   onChange={(value) => setSelectedHospital(value)}
-              //   value={selectedHospital}
-              // /> */}
+              // </div>
+              <RadioButton
+               title=""
+               items={searchedData.map((item) => {
+                 return {
+                   label: item.hospitalName,
+                   name: "hospital",
+                 };
+               })}
+               onChange={(value) => setSelectedHospital(value)}
+               value={selectedHospital}
+             />
+            ) : null}
+             
           </div>
         </div>
       </div>

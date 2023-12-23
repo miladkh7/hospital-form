@@ -56,6 +56,7 @@ const Components = () => {
   });
   const [subtitleCompoenent, setSubtitleCompoenent] = useState([]);
   const [allowAdd, setAllowAdd] = useState(false);
+  const [allowNext, setAllowNext] = useState(false);
 
   useEffect(() => {
     setLocalForm((prevForm) => ({
@@ -80,6 +81,13 @@ const Components = () => {
       setAllowAdd(false);
     }
   }, [localForm]);
+  useEffect(() => {
+    if (formData.components.length > 0) {
+      setAllowNext(true);
+    } else {
+      setAllowNext(false);
+    }
+  }, [formData.components]);
 
   const formHandler = (key, value) => {
     setLocalForm((prevForm) => ({
@@ -286,8 +294,8 @@ const Components = () => {
                 Back
               </button>
               <button
-                className={`next ${1 == 1 ? "" : "disable"}`}
-                onClick={1 === 1 ? Next : null}
+                className={`next ${allowNext ? "" : "disable"}`}
+                onClick={allowNext ? Next : null}
               >
                 Next
               </button>
