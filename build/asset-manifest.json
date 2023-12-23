@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/hospital-form/general-info/static/css/main.ca0117c5.css",
-    "main.js": "/hospital-form/general-info/static/js/main.96ee967e.js",
-    "static/js/787.51f618cd.chunk.js": "/hospital-form/general-info/static/js/787.51f618cd.chunk.js",
-    "static/media/logo.jpg": "/hospital-form/general-info/static/media/logo.c2f5240ca38466b3a3df.jpg",
-    "index.html": "/hospital-form/general-info/index.html",
-    "static/media/marker.svg": "/hospital-form/general-info/static/media/marker.499fd27a238cb6135750e84f8f0023e8.svg",
-    "main.ca0117c5.css.map": "/hospital-form/general-info/static/css/main.ca0117c5.css.map",
-    "main.96ee967e.js.map": "/hospital-form/general-info/static/js/main.96ee967e.js.map",
-    "787.51f618cd.chunk.js.map": "/hospital-form/general-info/static/js/787.51f618cd.chunk.js.map"
+    "main.css": "/hospital-form/static/css/main.ca0117c5.css",
+    "main.js": "/hospital-form/static/js/main.18a44816.js",
+    "static/js/787.51f618cd.chunk.js": "/hospital-form/static/js/787.51f618cd.chunk.js",
+    "static/media/logo.jpg": "/hospital-form/static/media/logo.c2f5240ca38466b3a3df.jpg",
+    "static/media/marker.svg": "/hospital-form/static/media/marker.499fd27a238cb6135750e84f8f0023e8.svg",
+    "index.html": "/hospital-form/index.html",
+    "main.ca0117c5.css.map": "/hospital-form/static/css/main.ca0117c5.css.map",
+    "main.18a44816.js.map": "/hospital-form/static/js/main.18a44816.js.map",
+    "787.51f618cd.chunk.js.map": "/hospital-form/static/js/787.51f618cd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ca0117c5.css",
-    "static/js/main.96ee967e.js"
+    "static/js/main.18a44816.js"
   ]
 }
