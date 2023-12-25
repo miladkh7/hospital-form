@@ -147,8 +147,22 @@ const Components = () => {
               value={localForm.floorNumber}
               label="Floor Number"
               required={true}
-              onChange={(value) => formHandler("floorNumber", value)}
+              onChange={(value) =>
+                parseInt(value) >=
+                  Math.min(
+                    parseInt(formData.floorsOn),
+                    -parseInt(formData.floorsUnder)
+                  ) &&
+                parseInt(value) <=
+                  Math.max(
+                    parseInt(formData.floorsOn),
+                    -parseInt(formData.floorsUnder)
+                  )
+                  ? formHandler("floorNumber", value)
+                  : null
+              }
               type={"number"}
+              acceptNagative={true}
             />
             <TextInput
               value={localForm.count}

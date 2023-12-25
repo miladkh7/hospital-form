@@ -19,24 +19,26 @@ const HospitalClassification = () => {
     dispatch(form({ key, value }));
   };
   useEffect(() => {
-    const arrayInstance = [];
+    const floorOn = [];
+    const floorUnder = [];
     Array.from({ length: parseInt(formData.floorsUnder) }, (value, index) => {
-      arrayInstance.push({
+      floorUnder.push({
         index: -index - 1,
         floor: 0,
         height: "",
         area: "",
       });
     });
+
     Array.from({ length: parseInt(formData.floorsOn) }, (value, index) => {
-      arrayInstance.push({
+      floorOn.push({
         index: index++,
         floor: 0,
         height: "",
         area: "",
       });
     });
-    setFloors(arrayInstance);
+    setFloors(floorOn.reverse().concat(floorUnder));
   }, []);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const HospitalClassification = () => {
     setFloors(updatedFloor);
   };
   const Next = () => {
-    formHandler("floors", floors)
+    formHandler("floors", floors);
     navigate("/components");
   };
   const Back = () => {

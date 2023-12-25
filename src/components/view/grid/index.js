@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.scss";
 import {
   LineChart,
   Line,
@@ -7,6 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const Grid = ({ data }) => {
@@ -91,9 +93,9 @@ const Grid = ({ data }) => {
       {data ? (
         <div className="container-fluid">
           <div className="row">
-            <div className="col col-12">
-              <div className="row">
-                <LineChart width={450} height={300} data={fragilityData}>
+            <div className="col col-6">
+              <ResponsiveContainer height={300}>
+                <LineChart data={fragilityData}>
                   <CartesianGrid strokeDasharray="0 1" />
                   <XAxis
                     dataKey="name"
@@ -135,7 +137,108 @@ const Grid = ({ data }) => {
                     strokeWidth={2}
                   />
                 </LineChart>
-                <LineChart width={450} height={300} data={hazardData}>
+              </ResponsiveContainer>
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col col-4">
+                    <span className="title">Medical</span>
+                    <ResponsiveContainer height={300}>
+                      <LineChart data={medicalData}>
+                        <CartesianGrid strokeDasharray="0 3" />
+                        <XAxis
+                          dataKey="name"
+                          type="number"
+                          scale="pow"
+                          domain={[0, 1]}
+                        />
+                        <YAxis type="number" scale="pow" domain={[0, 1]} />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="slight"
+                          stroke="#C40000"
+                          name="slight"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="moderate"
+                          stroke="#3532C8"
+                          name="moderate"
+                          strokeWidth={2}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="col col-4">
+                  <span className="title">Lifeline</span>
+                    <ResponsiveContainer height={300}>
+                      <LineChart data={architecturalData}>
+                        <CartesianGrid strokeDasharray="0 3" />
+                        <XAxis
+                          dataKey="name"
+                          type="number"
+                          scale="pow"
+                          domain={[0, 1]}
+                        />
+                        <YAxis type="number" scale="pow" domain={[0, 1]} />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="slight"
+                          stroke="#C40000"
+                          name="slight"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="moderate"
+                          stroke="#3532C8"
+                          name="moderate"
+                          strokeWidth={2}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="col col-4">
+                  <span className="title">Architectural</span>
+                    <ResponsiveContainer height={300}>
+                      <LineChart data={lifelineData}>
+                        <CartesianGrid strokeDasharray="0 3" />
+                        <XAxis
+                          dataKey="name"
+                          type="number"
+                          scale="pow"
+                          domain={[0, 1]}
+                        />
+                        <YAxis type="number" scale="pow" domain={[0, 1]} />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="slight"
+                          stroke="#C40000"
+                          name="slight"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="moderate"
+                          stroke="#3532C8"
+                          name="moderate"
+                          strokeWidth={2}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col col-6">
+              <ResponsiveContainer height={300}>
+                <LineChart data={hazardData}>
                   <CartesianGrid strokeDasharray="0 1" />
                   <XAxis
                     dataKey="name"
@@ -161,198 +264,135 @@ const Grid = ({ data }) => {
                     strokeWidth={2}
                   />
                 </LineChart>
-              </div>
-            </div>
-            <div className="col col-8">
-              <div className="row">
-                <LineChart width={200} height={300} data={medicalData}>
-                  <CartesianGrid strokeDasharray="0 3" />
-                  <XAxis
-                    dataKey="name"
-                    type="number"
-                    scale="pow"
-                    domain={[0, 1]}
-                  />
-                  <YAxis type="number" scale="pow" domain={[0, 1]} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="slight"
-                    stroke="#C40000"
-                    name="slight"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="moderate"
-                    stroke="#3532C8"
-                    name="moderate"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-                <LineChart width={200} height={300} data={architecturalData}>
-                  <CartesianGrid strokeDasharray="0 3" />
-                  <XAxis
-                    dataKey="name"
-                    type="number"
-                    scale="pow"
-                    domain={[0, 1]}
-                  />
-                  <YAxis type="number" scale="pow" domain={[0, 1]} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="slight"
-                    stroke="#C40000"
-                    name="slight"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="moderate"
-                    stroke="#3532C8"
-                    name="moderate"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-                <LineChart width={200} height={300} data={lifelineData}>
-                  <CartesianGrid strokeDasharray="0 3" />
-                  <XAxis
-                    dataKey="name"
-                    type="number"
-                    scale="pow"
-                    domain={[0, 1]}
-                  />
-                  <YAxis type="number" scale="pow" domain={[0, 1]} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="slight"
-                    stroke="#C40000"
-                    name="slight"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="moderate"
-                    stroke="#3532C8"
-                    name="moderate"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-                <LineChart width={200} height={300} data={nscData}>
-                  <CartesianGrid strokeDasharray="0 3" />
-                  <XAxis
-                    dataKey="name"
-                    type="number"
-                    scale="pow"
-                    domain={[0, 1]}
-                  />
-                  <YAxis type="number" scale="pow" domain={[0, 1]} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="slight"
-                    stroke="#C40000"
-                    name="slight"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="moderate"
-                    stroke="#3532C8"
-                    name="moderate"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-                <LineChart width={200} height={300} data={structuralData}>
-                  <CartesianGrid strokeDasharray="0 1" />
-                  <XAxis
-                    dataKey="name"
-                    type="number"
-                    scale="pow"
-                    domain={["auto", "auto"]}
-                  />
-                  <YAxis type="number" scale="pow" domain={[0, 1]} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="collapse"
-                    stroke="#A3CC4A"
-                    name="collapse"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="extensive"
-                    stroke="#2BA90F"
-                    strokeDasharray="3 2"
-                    name="extensive"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="moderate"
-                    stroke="#7A00C4"
-                    strokeDasharray="3 2"
-                    name="moderate"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="slight"
-                    stroke="#C40000"
-                    name="slight"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-                <LineChart width={200} height={300} data={combinedData}>
-                  <CartesianGrid strokeDasharray="0 1" />
-                  <XAxis
-                    dataKey="name"
-                    type="number"
-                    scale="pow"
-                    domain={["auto", "auto"]}
-                  />
-                  <YAxis type="number" scale="pow" domain={[0, 1]} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="collapse"
-                    stroke="#A3CC4A"
-                    name="collapse"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="extensive"
-                    stroke="#2BA90F"
-                    strokeDasharray="3 2"
-                    name="extensive"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="moderate"
-                    stroke="#7A00C4"
-                    strokeDasharray="3 2"
-                    name="moderate"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="slight"
-                    stroke="#C40000"
-                    name="slight"
-                    strokeWidth={2}
-                  />
-                </LineChart>
+              </ResponsiveContainer>
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col col-4">
+                  <span className="title">NSC</span>
+                    <ResponsiveContainer height={300}>
+                      <LineChart data={nscData}>
+                        <CartesianGrid strokeDasharray="0 3" />
+                        <XAxis
+                          dataKey="name"
+                          type="number"
+                          scale="pow"
+                          domain={[0, 1]}
+                        />
+                        <YAxis type="number" scale="pow" domain={[0, 1]} />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="slight"
+                          stroke="#C40000"
+                          name="slight"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="moderate"
+                          stroke="#3532C8"
+                          name="moderate"
+                          strokeWidth={2}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="col col-4">
+                  <span className="title">Structural</span>
+                    <ResponsiveContainer height={300}>
+                      <LineChart data={structuralData}>
+                        <CartesianGrid strokeDasharray="0 1" />
+                        <XAxis
+                          dataKey="name"
+                          type="number"
+                          scale="pow"
+                          domain={["auto", "auto"]}
+                        />
+                        <YAxis type="number" scale="pow" domain={[0, 1]} />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="collapse"
+                          stroke="#A3CC4A"
+                          name="collapse"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="extensive"
+                          stroke="#2BA90F"
+                          strokeDasharray="3 2"
+                          name="extensive"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="moderate"
+                          stroke="#7A00C4"
+                          strokeDasharray="3 2"
+                          name="moderate"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="slight"
+                          stroke="#C40000"
+                          name="slight"
+                          strokeWidth={2}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="col col-4">
+                  <span className="title">Combined(st & nsc)</span>
+                    <ResponsiveContainer height={300}>
+                      <LineChart data={combinedData}>
+                        <CartesianGrid strokeDasharray="0 1" />
+                        <XAxis
+                          dataKey="name"
+                          type="number"
+                          scale="pow"
+                          domain={["auto", "auto"]}
+                        />
+                        <YAxis type="number" scale="pow" domain={[0, 1]} />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="collapse"
+                          stroke="#A3CC4A"
+                          name="collapse"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="extensive"
+                          stroke="#2BA90F"
+                          strokeDasharray="3 2"
+                          name="extensive"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="moderate"
+                          stroke="#7A00C4"
+                          strokeDasharray="3 2"
+                          name="moderate"
+                          strokeWidth={2}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="slight"
+                          stroke="#C40000"
+                          name="slight"
+                          strokeWidth={2}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

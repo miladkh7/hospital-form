@@ -10,6 +10,8 @@ const MiladiDatePicker = ({label, value, onChange}) => {
         selected={value}
         value={value}
         onChange={(date) => onChange(date)}
+        dateFormat="yyyy"
+        showYearPicker
       />
       <span className="label">{label}</span>
       <i><FaRegCalendarAlt /></i>
