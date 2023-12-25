@@ -2,7 +2,7 @@
   "name": "hospital-form",
   "version": "0.1.0",
   "node version": "16.13.1",
-  "homepage": "https://dariudev.github.io/hospital-form",
+  "homepage": "http://dariudev.github.io/hospital-form",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
