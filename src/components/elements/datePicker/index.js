@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./style.scss";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-const MiladiDatePicker = ({label, value, onChange}) => {
+const MiladiDatePicker = ({label, value, onChange, ...otherProps}) => {
   return (
     <div className={`date-picker ${value ? 'active': ''}`}>
       <DatePicker
@@ -12,6 +12,7 @@ const MiladiDatePicker = ({label, value, onChange}) => {
         onChange={(date) => onChange(date)}
         dateFormat="yyyy"
         showYearPicker
+        {...otherProps}
       />
       <span className="label">{label}</span>
       <i><FaRegCalendarAlt /></i>

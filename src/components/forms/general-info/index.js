@@ -129,6 +129,7 @@ const GeneralInfo = () => {
                       <MiladiDatePicker
                         label="Designed Date"
                         value={formData.designedDate}
+                        dateFormat="MM/dd/yyyy"
                         onChange={(date) => formHandler("designedDate", date)}
                       />
                     </div>

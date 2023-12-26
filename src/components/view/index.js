@@ -119,18 +119,17 @@ const View = () => {
               //   })}
               // </div>
               <RadioButton
-               title=""
-               items={searchedData.map((item) => {
-                 return {
-                   label: item.hospitalName,
-                   name: "hospital",
-                 };
-               })}
-               onChange={(value) => setSelectedHospital(value)}
-               value={selectedHospital}
-             />
+                title=""
+                items={searchedData.map((item) => {
+                  return {
+                    label: item.hospitalName,
+                    name: "hospital",
+                  };
+                })}
+                onChange={(value) => setSelectedHospital(value)}
+                value={selectedHospital}
+              />
             ) : null}
-             
           </div>
         </div>
       </div>
@@ -140,7 +139,10 @@ const View = () => {
         ) : activeTab === "grid" ? (
           <Grid data={filteredData.charts} />
         ) : activeTab === "map" ? (
-          <Map locations={locations} />
+          <Map
+            locations={locations}
+            filteredLocation={[filteredData.latitude, filteredData.longitude]}
+          />
         ) : null}
       </div>
     </section>
