@@ -18,6 +18,7 @@ import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import { CSVLink, CSVDownload } from "react-csv";
 
 function createData(
   id,
@@ -110,9 +111,11 @@ export default function Chart({ data }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const titles = Object.entries(data[0]).map(([id, value]) => ({ id }));
-  const rows = data.map((item, index) =>
-    createData(
+  const titles = Object.entries(data[0]).map(([id, value]) => {
+    return { id };
+  });
+  const rows = data.map((item, index) => {
+    return createData(
       index,
       item.hospitalName,
       item.block,
@@ -138,8 +141,8 @@ export default function Chart({ data }) {
       item.lateralLoadResistantY,
       item.vertical,
       item.plan
-    )
-  );
+    );
+  });
   function EnhancedTableHead(props) {
     const {
       onSelectAllClick,
@@ -158,6 +161,23 @@ export default function Chart({ data }) {
         <TableRow>
           <TableCell padding="checkbox"></TableCell>
           {titles.map((headCell) => {
+            if (["components", "floors", "charts"].includes(headCell.id)) {
+              return null;
+            }
+            const labelContent = (headCellName) => {
+              switch (headCellName) {
+                case "plan":
+                  return "irregularityPlan";
+                case "vertical":
+                  return "irregularityVertical";
+                case "lateralLoadResistantX":
+                  return "lateralLoadResistingX";
+                case "lateralLoadResistantY":
+                  return "lateralLoadResistingY";
+                default:
+                  return headCell.id;
+              }
+            };
             return (
               <TableCell
                 key={headCell.id}
@@ -170,7 +190,7 @@ export default function Chart({ data }) {
                   direction={orderBy === headCell.id ? order : "asc"}
                   onClick={createSortHandler(headCell.id)}
                 >
-                  {headCell.id}
+                  {labelContent(headCell.id)}
                   {orderBy === headCell.id ? (
                     <Box component="span" sx={visuallyHidden}>
                       {order === "desc"
@@ -182,6 +202,11 @@ export default function Chart({ data }) {
               </TableCell>
             );
           })}
+          <TableCell align={"left"} padding={"normal"}>
+            <TableSortLabel direction={orderBy === "export" ? order : "asc"}>
+              {"Export"}
+            </TableSortLabel>
+          </TableCell>
         </TableRow>
       </TableHead>
     );
@@ -269,8 +294,6 @@ export default function Chart({ data }) {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                console.log(row, "rrrr");
-
                 return (
                   <TableRow
                     hover
@@ -308,14 +331,26 @@ export default function Chart({ data }) {
                     <TableCell align="left">{row.standardEdition}</TableCell>
                     <TableCell align="left">{row.controlSystem}</TableCell>
                     <TableCell align="left">{row.material}</TableCell>
-                    <TableCell align="left">{row.lateralLoadResistantX}</TableCell>
-                    <TableCell align="left">{row.lateralLoadResistantY}</TableCell>
-                    <TableCell align="left">{row.vertical ? "true" : "false"}</TableCell>
-                    <TableCell align="left">{row.plan ? "true" : "false"}</TableCell>
-                    <TableCell align="left">{null}</TableCell>
-                    <TableCell align="left">{null}</TableCell>
-                    <TableCell align="left">{null}</TableCell>
-
+                    <TableCell align="center">
+                      {row.lateralLoadResistantX}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.lateralLoadResistantY}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.vertical ? "true" : "false"}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.plan ? "true" : "false"}
+                    </TableCell>
+                    <TableCell>
+                      <CSVLink
+                        data={data}
+                        filename={`hospital-${row.hospitalName}.csv`}
+                      >
+                        Export
+                      </CSVLink>
+                    </TableCell>
                   </TableRow>
                 );
               })}

@@ -134,14 +134,14 @@ const GeneralInfo = () => {
                     </div>
                     <div className="col col-4">
                       <MiladiDatePicker
-                        label="Created Date"
+                        label="Cunstruction Date"
                         value={formData.createdDate}
                         onChange={(date) => formHandler("createdDate", date)}
                       />
                     </div>
                     <div className="col col-4">
                       <MiladiDatePicker
-                        label="Service Date"
+                        label="Years Of Service"
                         value={formData.serviceDate}
                         onChange={(date) => formHandler("serviceDate", date)}
                       />

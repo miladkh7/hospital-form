@@ -88,8 +88,6 @@ const HospitalClassification = () => {
             <div className="container-fluid">
               <div className="row">
                 <div className="col col-5">
-                  {/* {floorsOn}
-                {floorsUnder} */}
                   {floors.map((item) => {
                     return (
                       <div className="container-fluid">
@@ -200,7 +198,7 @@ const HospitalClassification = () => {
                     ]}
                     onChange={(title) => formHandler("material", title)}
                   />
-                  <span className="title">Lateral Load Resistant System</span>
+                  <span className="title">Lateral Load Resisting System</span>
                   <SelectBox
                     value={formData.lateralLoadResistantX}
                     label="X Direction"

@@ -2,7 +2,6 @@
   "name": "hospital-form",
   "version": "0.1.0",
   "node version": "16.13.1",
-  "homepage": "https://dariudev.github.io/hospital-form",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -18,6 +17,7 @@
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
+    "react-csv": "^2.2.2",
     "react-datepicker": "^4.24.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",

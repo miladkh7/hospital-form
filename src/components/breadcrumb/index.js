@@ -24,7 +24,7 @@ const Breadcrumb = ({ activeStep }) => {
         </li>
         <li className={`crumb ${activeStep === 3 ? "active" : ""}`}>
           <div className="link">
-            <a href="#">Add Non Stuructural Components</a>
+            <a href="#">Non Stuructural Components</a>
           </div>
         </li>
       </ol>

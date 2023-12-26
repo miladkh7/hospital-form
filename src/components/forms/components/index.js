@@ -38,7 +38,6 @@ export const subtitleComponent = {
     { title: "Medical Cabinet" },
     { title: "Wheel Equipment" },
     { title: "Unanchored Contents" },
-    { title: "cladding" },
   ],
 };
 const Components = () => {
@@ -155,7 +154,7 @@ const Components = () => {
                   ) &&
                 parseInt(value) <=
                   Math.max(
-                    parseInt(formData.floorsOn),
+                    parseInt(formData.floorsOn - 1),
                     -parseInt(formData.floorsUnder)
                   )
                   ? formHandler("floorNumber", value)
@@ -187,7 +186,7 @@ const Components = () => {
               <div className="col col-6">
                 <SelectBox
                   value={localForm.component}
-                  label="compoent"
+                  label="component"
                   options={titleComponent}
                   onChange={(title) => {
                     formHandler("component", title);
@@ -207,7 +206,7 @@ const Components = () => {
             </div>
             <TextInput
               value={localForm.cost}
-              label="Cost"
+              label="Cost (Million IRR)"
               required={true}
               onChange={(value) => formHandler("cost", value)}
               type={"number"}
@@ -215,7 +214,7 @@ const Components = () => {
             <SelectBox
               value={localForm.isEmbraced}
               label="Is Embraced"
-              options={[{ title: "true" }, { title: "false" }]}
+              options={[{ title: "Yes" }, { title: "No" }]}
               onChange={(value) => formHandler("isEmbraced", value)}
             />
             <TextInput
