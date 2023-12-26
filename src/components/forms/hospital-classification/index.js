@@ -96,8 +96,8 @@ const HospitalClassification = () => {
                             <TextInput
                               label="Floor"
                               value={item.index}
-                              required={true}
-                              onChange={(value) => {}}
+                              disabled={true}
+                              
                             />
                           </div>
 
