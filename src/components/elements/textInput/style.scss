@@ -26,8 +26,17 @@
   input:focus {
     border: 1px solid $base-color;
   }
+  input:not([disabled]):focus {
+    border: 1px solid $base-color;
+  }
+  input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    caret-color: transparent;
+  }
   input:focus ~ label,
-  input:valid ~ label {
+  input:valid ~ label,
+  input:disabled ~ label {
     top: 0;
     left: 15px;
     font-size: 14px;

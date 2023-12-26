@@ -88,44 +88,45 @@ const HospitalClassification = () => {
             <div className="container-fluid">
               <div className="row">
                 <div className="col col-5">
-                  {floors.map((item) => {
-                    return (
-                      <div className="container-fluid">
-                        <div className="row">
-                          <div className="col col-4">
-                            <TextInput
-                              label="Floor"
-                              value={item.index}
-                              disabled={true}
-                              
-                            />
-                          </div>
-
-                          <div className="col col-4">
-                            <TextInput
-                              label="Floor Height (m)"
-                              value={item.height}
-                              required={true}
-                              onChange={(value) => {
-                                changeRow(item, "height", value);
-                              }}
-                            />
-                          </div>
-                          <div className="col col-4">
-                            <TextInput
-                              label="Floor Area (m^2)"
-                              value={item.area}
-                              required={true}
-                              onChange={(value) => {
-                                changeRow(item, "area", value);
-                              }}
-                              type={"number"}
-                            />
-                          </div>
-                        </div>
+                {floors.map((item) => {
+                return (
+                  <div className="container-fluid">
+                    <div className="row">
+                      <div className="col col-4">
+                        <TextInput
+                          label="Floor"
+                          value={item.index}
+                          required={true}
+                          onChange={(value) => {}}
+                          disable={true}
+                        />
                       </div>
-                    );
-                  })}
+
+                      <div className="col col-4">
+                        <TextInput
+                          label="Floor Height (m)"
+                          value={item.height}
+                          required={true}
+                          onChange={(value) => {
+                            changeRow(item, "height", value);
+                          }}
+                        />
+                      </div>
+                      <div className="col col-4">
+                        <TextInput
+                          label="Floor Area (m^2)"
+                          value={item.area}
+                          required={true}
+                          onChange={(value) => {
+                            changeRow(item, "area", value);
+                          }}
+                          type={"number"}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
                 </div>
                 <div className="col col-3">
                   <RadioButton
