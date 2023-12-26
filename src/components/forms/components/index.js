@@ -19,19 +19,19 @@ export const titleComponent = [
 ];
 export const subtitleComponent = {
   "Architectural Components": [
-    { title: "ceilings" },
-    { title: "partitions" },
-    { title: "suspended lighting fixtures" },
-    { title: "glass windows" },
-    { title: "cladding" },
+    { title: "Ceilings" },
+    { title: "Partitions" },
+    { title: "Suspended Lighting Fixtures" },
+    { title: "Glass Windows" },
+    { title: "Cladding" },
   ],
   "Lifeline Systems": [
-    { title: "supply" },
-    { title: "electric power" },
-    { title: "heating" },
-    { title: "ventilation" },
-    { title: "air conditioning" },
-    { title: "communication systems" },
+    { title: "Supply" },
+    { title: "Electric Power" },
+    { title: "Heating" },
+    { title: "Ventilation" },
+    { title: "Air Conditioning" },
+    { title: "Communication Systems" },
   ],
   "Medical Equipment": [
     { title: "Rigid Blocks" },
