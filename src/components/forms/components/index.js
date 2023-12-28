@@ -219,7 +219,7 @@ const Components = () => {
             />
             <TextInput
               value={localForm.serviceYears}
-              label="Sevice Years"
+              label="Years of Service"
               required={true}
               onChange={(value) => formHandler("serviceYears", value)}
               type={"number"}
@@ -281,7 +281,7 @@ const Components = () => {
                         </div>
                         <div className="col col-6">
                           <div className="item-row">
-                            <span className="label">service Years:</span>{" "}
+                            <span className="label">Years of Service:</span>{" "}
                             <span className="value">{item.serviceYears}</span>
                           </div>
                         </div>

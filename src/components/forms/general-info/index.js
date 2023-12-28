@@ -100,7 +100,7 @@ const GeneralInfo = () => {
                       <TextInput
                         value={formData.block}
                         required={true}
-                        label={"Block"}
+                        label={"Block Name"}
                         onChange={(value) => formHandler("block", value)}
                       />
                     </div>
@@ -127,7 +127,7 @@ const GeneralInfo = () => {
                     <div className="col col-4">
                       {" "}
                       <MiladiDatePicker
-                        label="Designed Date"
+                        label="Year of Design"
                         value={formData.designedDate}
                         onChange={(date) => formHandler("designedDate", date)}
                         showWholeDate={true}
@@ -135,14 +135,14 @@ const GeneralInfo = () => {
                     </div>
                     <div className="col col-4">
                       <MiladiDatePicker
-                        label="Cunstruction Date"
+                        label="Year of Construction"
                         value={formData.createdDate}
                         onChange={(date) => formHandler("createdDate", date)}
                       />
                     </div>
                     <div className="col col-4">
                       <MiladiDatePicker
-                        label="Years Of Service"
+                        label="Year of Service"
                         value={formData.serviceDate}
                         onChange={(date) => formHandler("serviceDate", date)}
                       />
@@ -150,7 +150,7 @@ const GeneralInfo = () => {
                     <div className="col col-6">
                       <TextInput
                         value={formData.floorsOn}
-                        label="Floors On"
+                        label="No. of Floors above Ground"
                         required={true}
                         onChange={(value) => {
                           formHandler("floorsOn", value);
@@ -161,7 +161,7 @@ const GeneralInfo = () => {
                     <div className="col col-6">
                       <TextInput
                         value={formData.floorsUnder}
-                        label="Floors Under"
+                        label="No. of Floors under Ground"
                         required={true}
                         onChange={(value) => {
                           formHandler("floorsUnder", value);
@@ -204,7 +204,7 @@ const GeneralInfo = () => {
                     <div className="col col-4">
                       <TextInput
                         value={formData.bedsNumber}
-                        label="Beds Number"
+                        label="Toatal Number of Beds"
                         required={true}
                         onChange={(value) => {
                           formHandler("bedsNumber", value);
@@ -217,9 +217,8 @@ const GeneralInfo = () => {
                         value={formData.impactFactor}
                         label="Impact Factor"
                         options={[
-                          { title: "0/2" },
-                          { title: "0.5" },
-                          { title: "0.75" },
+                          { title: "0.8" },
+                          { title: "1" },
                           { title: "1.2" },
                         ]}
                         onChange={(title) => {
@@ -259,7 +258,7 @@ const GeneralInfo = () => {
               <div className="col col-4">
                 <MapContainer
                   center={[formData.latitude, formData.longitude]}
-                  zoom={6}
+                  zoom={4}
                   style={{ height: "565px", width: "100%" }}
                 >
                   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

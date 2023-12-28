@@ -8,8 +8,28 @@ import { form } from "../../../redux/slices/forms";
 import SelectBox from "../../elements/selectBox";
 import Switch from "../../elements/switch";
 import { useNavigate } from "react-router-dom";
-
+export const materials = [
+  { title: "Reinforced Concrete" },
+  { title: "Steel" },
+  { title: "Masonry" },
+];
+export const subMaterials = {
+  "Reinforced Concrete": [
+    { title: "Momemt Frames" },
+    { title: "Shear Walls" },
+    { title: "Braced Frames" },
+    { title: "Combinations" },
+  ],
+  "Steel": [
+    { title: "Momemt Frames" },
+    { title: "Shear Walls" },
+    { title: "Braced Frames" },
+    { title: "Combinations" },
+  ],
+  "Masonry": [{ title: "Unreinforced" }, { title: "Reinforced" }],
+};
 const HospitalClassification = () => {
+  const [materialItems, setMaterialItems] = useState([]);
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.todos);
   const navigate = useNavigate();
@@ -18,6 +38,11 @@ const HospitalClassification = () => {
   const formHandler = (key, value) => {
     dispatch(form({ key, value }));
   };
+  useEffect(() => {
+    formHandler("lateralLoadResistantX", "");
+    formHandler("lateralLoadResistantY", "");
+    setMaterialItems(subMaterials[formData.material] || []);
+  }, [formData.material]);
   useEffect(() => {
     const floorOn = [];
     const floorUnder = [];
@@ -88,45 +113,45 @@ const HospitalClassification = () => {
             <div className="container-fluid">
               <div className="row">
                 <div className="col col-5">
-                {floors.map((item) => {
-                return (
-                  <div className="container-fluid">
-                    <div className="row">
-                      <div className="col col-4">
-                        <TextInput
-                          label="Floor"
-                          value={item.index}
-                          required={true}
-                          onChange={(value) => {}}
-                          disable={true}
-                        />
-                      </div>
+                  {floors.map((item) => {
+                    return (
+                      <div className="container-fluid">
+                        <div className="row">
+                          <div className="col col-4">
+                            <TextInput
+                              label="Floor"
+                              value={item.index}
+                              required={true}
+                              onChange={(value) => {}}
+                              disable={true}
+                            />
+                          </div>
 
-                      <div className="col col-4">
-                        <TextInput
-                          label="Floor Height (m)"
-                          value={item.height}
-                          required={true}
-                          onChange={(value) => {
-                            changeRow(item, "height", value);
-                          }}
-                        />
+                          <div className="col col-4">
+                            <TextInput
+                              label="Floor Height (m)"
+                              value={item.height}
+                              required={true}
+                              onChange={(value) => {
+                                changeRow(item, "height", value);
+                              }}
+                            />
+                          </div>
+                          <div className="col col-4">
+                            <TextInput
+                              label="Floor Area (m^2)"
+                              value={item.area}
+                              required={true}
+                              onChange={(value) => {
+                                changeRow(item, "area", value);
+                              }}
+                              type={"number"}
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <div className="col col-4">
-                        <TextInput
-                          label="Floor Area (m^2)"
-                          value={item.area}
-                          required={true}
-                          onChange={(value) => {
-                            changeRow(item, "area", value);
-                          }}
-                          type={"number"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                    );
+                  })}
                 </div>
                 <div className="col col-3">
                   <RadioButton
@@ -192,23 +217,14 @@ const HospitalClassification = () => {
                   <SelectBox
                     value={formData.material}
                     label="Material"
-                    options={[
-                      { title: "Reinforced Concrete" },
-                      { title: "Steel" },
-                      { title: "Masonry" },
-                    ]}
+                    options={materials}
                     onChange={(title) => formHandler("material", title)}
                   />
                   <span className="title">Lateral Load Resisting System</span>
                   <SelectBox
                     value={formData.lateralLoadResistantX}
                     label="X Direction"
-                    options={[
-                      { title: "Momemt Frames" },
-                      { title: "Shear Walls" },
-                      { title: "Braced Frames" },
-                      { title: "Combinations" },
-                    ]}
+                    options={materialItems}
                     onChange={(title) =>
                       formHandler("lateralLoadResistantX", title)
                     }
@@ -216,12 +232,7 @@ const HospitalClassification = () => {
                   <SelectBox
                     value={formData.lateralLoadResistantY}
                     label="Y Direction"
-                    options={[
-                      { title: "Momemt Frames" },
-                      { title: "Shear Walls" },
-                      { title: "Braced Frames" },
-                      { title: "Combinations" },
-                    ]}
+                    options={materialItems}
                     onChange={(title) =>
                       formHandler("lateralLoadResistantY", title)
                     }
