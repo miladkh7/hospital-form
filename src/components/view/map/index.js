@@ -53,6 +53,8 @@ const Map = ({ locations, filteredLocation }) => {
   // const handleMarkerClick = (index) => {
   //   setSelectedMarker(index);
   // };
+
+  console.log(filteredLocation, "filteredLocationfilteredLocation");
   return (
     <MapContainer
       center={[formData.latitude, formData.longitude]}
@@ -65,7 +67,7 @@ const Map = ({ locations, filteredLocation }) => {
         return (
           <Marker
             key={index}
-            position={marker.position}
+            position={filteredLocation}
             icon={
               filteredLocation[0] === marker.position[0] &&
               filteredLocation[1] === marker.position[1]

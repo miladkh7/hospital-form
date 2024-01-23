@@ -89,9 +89,7 @@ const Grid = ({ data, base64 }) => {
         }))
       : [];
 
-console.log(base64.hazard_plot, "base64base64");
-
-
+  console.log(base64, "base64base64");
 
   return (
     <section className="chart">
@@ -142,12 +140,12 @@ console.log(base64.hazard_plot, "base64base64");
                     strokeWidth={2}
                   />
                 </LineChart> */}
-                <img src={base64.hazard_plot} alt="Base64 Image" />
+                <img src={base64.hazar_plot} alt="Base64 Image" />
               </ResponsiveContainer>
               <div className="container-fluid">
                 <div className="row">
-                  <div className="col col-4">
-                    <span className="title">Medical</span>
+                  {/* <div className="col col-4">
+                    <span className="title"></span>
                     <ResponsiveContainer height={300}>
                       <LineChart data={medicalData}>
                         <CartesianGrid strokeDasharray="0 3" />
@@ -178,7 +176,7 @@ console.log(base64.hazard_plot, "base64base64");
                     </ResponsiveContainer>
                   </div>
                   <div className="col col-4">
-                  <span className="title">Lifeline</span>
+                    <span className="title"></span>
                     <ResponsiveContainer height={300}>
                       <LineChart data={architecturalData}>
                         <CartesianGrid strokeDasharray="0 3" />
@@ -209,7 +207,7 @@ console.log(base64.hazard_plot, "base64base64");
                     </ResponsiveContainer>
                   </div>
                   <div className="col col-4">
-                  <span className="title">Architectural</span>
+                    <span className="title"></span>
                     <ResponsiveContainer height={300}>
                       <LineChart data={lifelineData}>
                         <CartesianGrid strokeDasharray="0 3" />
@@ -238,13 +236,17 @@ console.log(base64.hazard_plot, "base64base64");
                         />
                       </LineChart>
                     </ResponsiveContainer>
-                  </div>
+                  </div> */}
+                  <ResponsiveContainer height={300}>
+               
+               <img src={base64.risk_plot} alt="Base64 Image" />
+               </ResponsiveContainer>
                 </div>
               </div>
             </div>
             <div className="col col-6">
               <ResponsiveContainer height={300}>
-                <LineChart data={hazardData}>
+                {/* <LineChart data={hazardData}>
                   <CartesianGrid strokeDasharray="0 1" />
                   <XAxis
                     dataKey="name"
@@ -269,14 +271,21 @@ console.log(base64.hazard_plot, "base64base64");
                     name="Hazard"
                     strokeWidth={2}
                   />
-                </LineChart>
+                </LineChart> */}
+
+                <img src={base64.fragility_plot} alt="Base64 Image" />
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300}>
+               
+              <img src={base64.nsc_plot} alt="Base64 Image" />
               </ResponsiveContainer>
               <div className="container-fluid">
                 <div className="row">
-                  <div className="col col-4">
-                  <span className="title">NSC</span>
+                {/*  <div className="col col-4">
+                    <span className="title"></span>
                     <ResponsiveContainer height={300}>
-                      <LineChart data={nscData}>
+
+                      {/* <LineChart data={nscData}>
                         <CartesianGrid strokeDasharray="0 3" />
                         <XAxis
                           dataKey="name"
@@ -301,11 +310,11 @@ console.log(base64.hazard_plot, "base64base64");
                           name="moderate"
                           strokeWidth={2}
                         />
-                      </LineChart>
+                      </LineChart> 
                     </ResponsiveContainer>
-                  </div>
-                  <div className="col col-4">
-                  <span className="title">Structural</span>
+                  </div>*/}
+                  {/* <div className="col col-4">
+                    <span className="title"></span>
                     <ResponsiveContainer height={300}>
                       <LineChart data={structuralData}>
                         <CartesianGrid strokeDasharray="0 1" />
@@ -352,7 +361,7 @@ console.log(base64.hazard_plot, "base64base64");
                     </ResponsiveContainer>
                   </div>
                   <div className="col col-4">
-                  <span className="title">Combined(st & nsc)</span>
+                    <span className="title"></span>
                     <ResponsiveContainer height={300}>
                       <LineChart data={combinedData}>
                         <CartesianGrid strokeDasharray="0 1" />
@@ -397,7 +406,7 @@ console.log(base64.hazard_plot, "base64base64");
                         />
                       </LineChart>
                     </ResponsiveContainer>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
