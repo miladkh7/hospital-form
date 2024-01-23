@@ -3,14 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const todoSlice = createSlice({
   name: "todos",
   initialState: {
+    id: 0,
     hospitalName: "",
     province: "",
     city: "",
     floorsUnder: "",
     floorsOn: "",
-    createdDate: null,
-    designedDate: null,
-    serviceDate: null,
+    createdDate: "",
+    designedDate: "",
+    serviceDate: "",
     latitude: "35.715298",
     longitude: "51.404343",
     bedsNumber: "",

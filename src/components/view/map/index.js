@@ -53,7 +53,6 @@ const Map = ({ locations, filteredLocation }) => {
   // const handleMarkerClick = (index) => {
   //   setSelectedMarker(index);
   // };
-  console.log(filteredLocation, "ddddd");
   return (
     <MapContainer
       center={[formData.latitude, formData.longitude]}

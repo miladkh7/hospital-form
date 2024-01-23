@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const Grid = ({ data }) => {
+const Grid = ({ data, base64 }) => {
   const nameData = [0, 0.2, 0.4, 0.6, 0.8, 1];
 
   const fragilityData = data?.fragility?.map((item, index) => ({
@@ -88,14 +88,19 @@ const Grid = ({ data }) => {
           slight: item?.slight || 0,
         }))
       : [];
+
+console.log(base64.hazard_plot, "base64base64");
+
+
+
   return (
     <section className="chart">
-      {data ? (
+      {!data ? (
         <div className="container-fluid">
           <div className="row">
             <div className="col col-6">
               <ResponsiveContainer height={300}>
-                <LineChart data={fragilityData}>
+                {/* <LineChart data={fragilityData}>
                   <CartesianGrid strokeDasharray="0 1" />
                   <XAxis
                     dataKey="name"
@@ -136,7 +141,8 @@ const Grid = ({ data }) => {
                     name="slight"
                     strokeWidth={2}
                   />
-                </LineChart>
+                </LineChart> */}
+                <img src={base64.hazard_plot} alt="Base64 Image" />
               </ResponsiveContainer>
               <div className="container-fluid">
                 <div className="row">

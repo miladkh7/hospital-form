@@ -12,6 +12,8 @@ import {
   removeComponent,
 } from "../../../redux/slices/forms";
 import Breadcrumb from "../../breadcrumb";
+import { hospitalComponents } from "../../../api/crud";
+
 export const titleComponent = [
   { title: "Architectural Components" },
   { title: "Lifeline Systems" },
@@ -96,13 +98,13 @@ const Components = () => {
   };
   const saveComponent = () => {
     const item = {
-      floorNo: localForm.floorNumber,
-      count: localForm.count,
+      floor_no: localForm.floorNumber,
+      quantity: localForm.count,
       component: localForm.component,
       element: localForm.element,
       cost: localForm.cost,
-      isEmbraced: localForm.isEmbraced,
-      serviceYears: localForm.serviceYears,
+      is_embraced: localForm.isEmbraced,
+      service_years: localForm.serviceYears,
     };
     dispatch(setComponentsList(item));
 
@@ -129,9 +131,30 @@ const Components = () => {
   const removeComponentItem = (index) => {
     dispatch(removeComponent(index));
   };
-  const Next = () => {
-    navigate("/view");
+  
+  const handleButtonClick = async () => {
+    try {
+      const response = await hospitalComponents({medical_components: formData.components}, formData.id);
+      console.log("Response from hospitalForms:", response);
+      if (response) {
+        navigate("/view");
+      }
+    } catch (error) {
+      console.error("Error in hospitalForms:", error);
+    }
   };
+
+  console.log(formData.components, "formData.components");
+//   {
+//     "floor_no": 1,
+//     "quantity": 2,
+//     "component": "2",
+//     "cost": 2,
+//     "is_embraced": false,
+//     "service_years": 3
+// },
+
+
 
   return (
     <section className="components">
@@ -246,13 +269,13 @@ const Components = () => {
                         <div className="col col-6">
                           <div className="item-row">
                             <span className="label">Floor Number:</span>{" "}
-                            <span className="value">{item.floorNo}</span>
+                            <span className="value">{item.floor_no}</span>
                           </div>
                         </div>
                         <div className="col col-6">
                           <div className="item-row">
                             <span className="label">Count:</span>{" "}
-                            <span className="value">{item.count}</span>
+                            <span className="value">{item.quantity}</span>
                           </div>
                         </div>
                         <div className="col col-6">
@@ -276,13 +299,13 @@ const Components = () => {
                         <div className="col col-6">
                           <div className="item-row">
                             <span className="label">isEmbraced:</span>{" "}
-                            <span className="value">{item.isEmbraced}</span>
+                            <span className="value">{item.is_embraced}</span>
                           </div>
                         </div>
                         <div className="col col-6">
                           <div className="item-row">
                             <span className="label">Years of Service:</span>{" "}
-                            <span className="value">{item.serviceYears}</span>
+                            <span className="value">{item.service_years}</span>
                           </div>
                         </div>
                       </div>
@@ -308,7 +331,7 @@ const Components = () => {
               </button>
               <button
                 className={`next ${allowNext ? "" : "disable"}`}
-                onClick={allowNext ? Next : null}
+                onClick={allowNext ? handleButtonClick : null}
               >
                 Next
               </button>

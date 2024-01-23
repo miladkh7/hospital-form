@@ -115,23 +115,24 @@ export default function Chart({ data }) {
     return { id };
   });
   const rows = data.map((item, index) => {
+    console.log(item, "itemitmeitmeitmeim");
     return createData(
       index,
-      item.hospitalName,
+      item.name,
       item.block,
       item.province,
       item.city,
-      item.floorsUnder,
-      item.floorsOn,
-      item.createdDate,
-      item.designedDate,
-      item.serviceDate,
+      item.floor_under,
+      item.floor_on,
+      item.created_date,
+      item.design_date,
+      item.sercice_date,
       item.latitude,
       item.longitude,
-      item.bedsNumber,
-      item.impactFactor,
-      item.unitPrice,
-      item.soilType,
+      item.beds_num,
+      item.impact_factor,
+      item.unit_price,
+      item.soil_type,
       item.address,
       item.floorsNo,
       item.standardEdition,
@@ -161,7 +162,7 @@ export default function Chart({ data }) {
         <TableRow>
           <TableCell padding="checkbox"></TableCell>
           {titles.map((headCell) => {
-            if (["components", "floors", "charts"].includes(headCell.id)) {
+            if (["medical_components","classification", "floors", "charts"].includes(headCell.id)) {
               return null;
             }
             const labelContent = (headCellName) => {
@@ -294,6 +295,7 @@ export default function Chart({ data }) {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
+                console.log(row, "rowrowrowrow");
                 return (
                   <TableRow
                     hover
@@ -303,6 +305,7 @@ export default function Chart({ data }) {
                     sx={{ cursor: "pointer" }}
                   >
                     <TableCell padding="checkbox"></TableCell>
+                    <TableCell padding="checkbox">{row.id}</TableCell>
                     <TableCell
                       component="th"
                       align="left"
@@ -311,27 +314,33 @@ export default function Chart({ data }) {
                     >
                       {row.hospitalName}
                     </TableCell>
-
-                    <TableCell align="left">{row.block}</TableCell>
+                   
+                    {/* <TableCell align="left">{row.block}</TableCell> */}
                     <TableCell align="left">{row.province}</TableCell>
                     <TableCell align="left">{row.city}</TableCell>
-                    <TableCell align="left">{row.floorsUnder}</TableCell>
-                    <TableCell align="left">{row.floorsOn}</TableCell>
                     <TableCell align="left">{row.createdDate}</TableCell>
                     <TableCell align="left">{row.designedDate}</TableCell>
                     <TableCell align="left">{row.serviceDate}</TableCell>
+                    <TableCell align="left">{row.floorsOn}</TableCell>
+                    <TableCell align="left">{row.floorsUnder}</TableCell>
+                    <TableCell align="left">{row.address}</TableCell>
                     <TableCell align="left">{row.latitude}</TableCell>
                     <TableCell align="left">{row.longitude}</TableCell>
                     <TableCell align="left">{row.bedsNumber}</TableCell>
                     <TableCell align="left">{row.impactFactor}</TableCell>
                     <TableCell align="left">{row.unitPrice}</TableCell>
                     <TableCell align="left">{row.soilType}</TableCell>
-                    <TableCell align="left">{row.address}</TableCell>
+                    {/* 
+                    
+                    
+                    
+                    
+                    
                     <TableCell align="left">{row.floorsNo}</TableCell>
                     <TableCell align="left">{row.standardEdition}</TableCell>
                     <TableCell align="left">{row.controlSystem}</TableCell>
-                    <TableCell align="left">{row.material}</TableCell>
-                    <TableCell align="center">
+                    <TableCell align="left">{row.material}</TableCell> */}
+                    {/* <TableCell align="center">
                       {row.lateralLoadResistantX}
                     </TableCell>
                     <TableCell align="center">
@@ -342,11 +351,11 @@ export default function Chart({ data }) {
                     </TableCell>
                     <TableCell align="center">
                       {row.plan ? "true" : "false"}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <CSVLink
                         data={data}
-                        filename={`hospital-${row.hospitalName}.csv`}
+                        filename={`hospital-${row.name}.csv`}
                       >
                         Export
                       </CSVLink>

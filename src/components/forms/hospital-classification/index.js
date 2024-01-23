@@ -8,6 +8,9 @@ import { form } from "../../../redux/slices/forms";
 import SelectBox from "../../elements/selectBox";
 import Switch from "../../elements/switch";
 import { useNavigate } from "react-router-dom";
+import { hospitalFloors, hospitalClassification } from "../../../api/crud";
+import { getGridData } from "../../../api/crud";
+
 export const materials = [
   { title: "Reinforced Concrete" },
   { title: "Steel" },
@@ -15,18 +18,18 @@ export const materials = [
 ];
 export const subMaterials = {
   "Reinforced Concrete": [
-    { title: "Momemt Frames" },
+    { title: "Moment Frames" },
     { title: "Shear Walls" },
     { title: "Braced Frames" },
     { title: "Combinations" },
   ],
-  "Steel": [
-    { title: "Momemt Frames" },
+  Steel: [
+    { title: "Moment Frames" },
     { title: "Shear Walls" },
     { title: "Braced Frames" },
     { title: "Combinations" },
   ],
-  "Masonry": [{ title: "Unreinforced" }, { title: "Reinforced" }],
+  Masonry: [{ title: "Unreinforced" }, { title: "Reinforced" }],
 };
 const HospitalClassification = () => {
   const [materialItems, setMaterialItems] = useState([]);
@@ -49,7 +52,6 @@ const HospitalClassification = () => {
     Array.from({ length: parseInt(formData.floorsUnder) }, (value, index) => {
       floorUnder.push({
         index: -index - 1,
-        floor: 0,
         height: "",
         area: "",
       });
@@ -58,13 +60,25 @@ const HospitalClassification = () => {
     Array.from({ length: parseInt(formData.floorsOn) }, (value, index) => {
       floorOn.push({
         index: index++,
-        floor: 0,
         height: "",
         area: "",
       });
     });
     setFloors(floorOn.reverse().concat(floorUnder));
   }, []);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const response = getGridData(formData.id);
+  //     console.log("Response from getGridData:", response);
+  //     // if (response) {
+  //     //   setGridData(response);
+  //     // }
+  //     // return response;
+  //   };
+    
+  //   getData()
+  // }, [floors]);
 
   useEffect(() => {
     if (
@@ -85,11 +99,9 @@ const HospitalClassification = () => {
     formData.lateralLoadResistantX,
     formData.lateralLoadResistantY,
   ]);
-
   const changeRow = (item, key, value) => {
     const floor = floors.find((obj) => obj.index === item.index);
-
-    floor[key] = value;
+    floor[key] = parseFloat(value);
     const updatedFloor = floors.map((item) =>
       item.index === floor.index ? { ...item, ...floor } : item
     );
@@ -101,6 +113,27 @@ const HospitalClassification = () => {
   };
   const Back = () => {
     navigate("/");
+  };
+  const handleButtonClick = async () => {
+    try {
+      const response = await hospitalFloors({ floors }, formData.id);
+      const classificationResponse = await hospitalClassification(
+        {
+          standard_edition: formData.standardEdition,
+          lateral_load_resistant_X: formData.lateralLoadResistantX,
+          lateral_load_resistant_Y: formData.lateralLoadResistantY,
+          Irregularity_vertical: formData.vertical,
+          Irregularity_plan: formData.plan,
+          control_system: formData.controlSystem,
+        },
+        formData.id
+      );
+      if (response && classificationResponse) {
+        Next();
+      }
+    } catch (error) {
+      console.error("Error in hospitalFloors:", error);
+    }
   };
   return (
     <section className="hospital-classification">
@@ -132,6 +165,8 @@ const HospitalClassification = () => {
                               label="Floor Height (m)"
                               value={item.height}
                               required={true}
+                              type={"number"}
+                              step="any"
                               onChange={(value) => {
                                 changeRow(item, "height", value);
                               }}
@@ -146,6 +181,7 @@ const HospitalClassification = () => {
                                 changeRow(item, "area", value);
                               }}
                               type={"number"}
+                              step="any"
                             />
                           </div>
                         </div>
@@ -248,7 +284,7 @@ const HospitalClassification = () => {
               </button>
               <button
                 className={`next ${allowContinue ? "" : "disable"}`}
-                onClick={allowContinue ? Next : null}
+                onClick={allowContinue ? handleButtonClick : null}
               >
                 Next
               </button>

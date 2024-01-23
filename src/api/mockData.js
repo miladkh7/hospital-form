@@ -35,12 +35,12 @@ const mockData = [
       },
     ],
     floors: [
-      { index: -1, floor: 0, height: "12", area: "32" },
-      { index: -2, floor: 0, height: "12", area: "32" },
-      { index: 0, floor: 0, height: "12", area: "32" },
-      { index: 1, floor: 0, height: "12", area: "32" },
-      { index: 2, floor: 0, height: "12", area: "32" },
-      { index: 3, floor: 0, height: "12", area: "32" },
+      { index: -1, floor: 0, height: 12, area: 32 },
+      { index: -2, floor: 0, height: 12, area: 2 },
+      { index: 0, floor: 0, height: 12, area: 2 },
+      { index: 1, floor: 0, height: 12, area: 2 },
+      { index: 2, floor: 0, height: 2, area: 3 },
+      { index: 3, floor: 0, height: 2, area: 23 },
     ],
     charts: {
       fragility: [

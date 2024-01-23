@@ -2,19 +2,62 @@ import { useState, useEffect } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
+import { getGridData, getHospital } from "../../api/crud";
 import "./style.scss";
 import Chart from "./chart";
 import Grid from "./grid";
 import mockData from "../../api/mockData";
 import RadioButton from "../elements/radioButton";
 import Map from "./map";
+
 const View = () => {
   const [activeTab, setActiveTab] = useState("grid");
   const [serachedValue, setSerachedValue] = useState("");
   const [expand, setExpand] = useState(true);
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [filteredData, setFilteredData] = useState({});
-  const [searchedData, setSearchedData] = useState(mockData);
+  const [gridData, setGridData] = useState([]);
+  const [hospital, setHospital] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchedData, setSearchedData] = useState(hospital);
+
+  const formData = useSelector((state) => state.todos);
+
+  const getData = async () => {
+    try {
+      // setIsLoading(true)
+      const response = await getGridData(formData.id);
+      console.log("Response from getGridData:", response);
+      if (response) {
+        setGridData(response);
+        // setIsLoading(false)
+      } else {
+        // setIsLoading(false)
+      }
+      return response;
+    } catch (error) {
+      console.log(error, "error getGridData");
+    }
+  };
+  const hospitals = async () => {
+    try {
+      const getHospitals = await getHospital();
+
+      if (getHospitals && getHospitals.length > 0) {
+        setHospital(getHospitals);
+        setSearchedData(getHospitals)
+        console.log(hospital, "getHspital");
+      }
+    } catch (error) {
+      console.log(error, "error in getHospital");
+    }
+  };
+
+  useEffect(() => {
+    hospitals();
+    getData();
+  }, []);
 
   const filterData = () => {
     if (!selectedHospital) {
@@ -22,8 +65,8 @@ const View = () => {
       return;
     }
 
-    const selectedHospitalData = mockData.find(
-      (item) => item.hospitalName === selectedHospital
+    const selectedHospitalData = hospital.find(
+      (item) => item.name === selectedHospital
     );
 
     if (selectedHospitalData) {
@@ -35,19 +78,17 @@ const View = () => {
   useEffect(() => {
     filterData();
   }, [selectedHospital]);
-  const locations = mockData.map((item) => [item.latitude, item.longitude]);
+  const locations = hospital.map((item) => [item.latitude, item.longitude]);
 
   const searchData = (value) => {
     setSerachedValue(value);
     if (value && value.length > 0) {
       let updatedArray = [];
-      mockData.map((item) => {
-        if (item.hospitalName.includes(value)) {
-          updatedArray.push(item);
-        }
-      });
+      hospital.map((item) =>
+        item.name.includes(value) ? updatedArray.push(item) : null
+      );
       setSearchedData(updatedArray);
-    } else setSearchedData(mockData);
+    } else setSearchedData(hospital);
   };
 
   return (
@@ -122,7 +163,7 @@ const View = () => {
                 title=""
                 items={searchedData.map((item) => {
                   return {
-                    label: item.hospitalName,
+                    label: item.name,
                     name: "hospital",
                   };
                 })}
@@ -135,9 +176,9 @@ const View = () => {
       </div>
       <div className="visual">
         {activeTab === "chart" ? (
-          <Chart data={mockData} />
+          <Chart data={hospital} />
         ) : activeTab === "grid" ? (
-          <Grid data={filteredData.charts} />
+          <Grid data={filteredData.charts} base64={gridData} />
         ) : activeTab === "map" ? (
           <Map
             locations={locations}

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo } from "../../../redux/slices/forms";
 import Breadcrumb from "../../breadcrumb";
 import SelectBox from "../../elements/selectBox";
 import TextInput from "../../elements/textInput";
@@ -14,6 +13,7 @@ import { floorsNoSetter, form } from "../../../redux/slices/forms";
 import { Link, useNavigate } from "react-router-dom";
 import { cities, states } from "../../elements/cityPicker";
 import marker from "../../../assets/images/marker.svg";
+import { hospitalForms } from "../../../api/crud";
 
 const GeneralInfo = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const GeneralInfo = () => {
   const formData = useSelector((state) => state.todos);
   const [allowContinue, setAllowContinue] = useState(false);
   const [cityOptions, setCityOptions] = useState([]);
+  const [data, setData] = useState(null)
 
   const markerIcon = new L.icon({
     iconUrl: marker,
@@ -72,9 +73,49 @@ const GeneralInfo = () => {
       setAllowContinue(false);
     }
   }, [formData]);
+  
+  const dateHandler = (date) => {
+    const dateObject = new Date(date);
 
-  const Next = () => {
-    navigate("/hospital-classification");
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Adding 1 to month because it is zero-based
+    const day = String(dateObject.getDate()).padStart(2, '0');
+    
+    const formattedDateString = `${year}-${month}-${day}`;
+
+    return formattedDateString
+  }
+  const handleButtonClick = async () => {
+    try {
+      const response = await hospitalForms({
+        id: Math.random(),
+        name: formData.hospitalName,
+        province: formData.province,
+        city: formData.city,
+        created_date: dateHandler(formData.createdDate),
+        design_date: dateHandler(formData.designedDate),
+        sercice_date: dateHandler(formData.serviceDate),
+        floor_on: Number(formData.floorsOn),
+        floor_under: Number(formData.floorsUnder),
+        address: formData.address,
+        latitude: Number(formData.latitude),
+        longitude: Number(formData.longitude),
+        beds_num: Number(formData.bedsNumber),
+        impact_factor: Number(formData.impactFactor),
+        unit_price: Number(formData.unitPrice),
+        soil_type: formData.soilType,
+      });
+      // formData.soilType
+      console.log("Response from hospitalForms:", response);
+      if (response) {
+        navigate("/hospital-classification");
+        setData(response)
+        console.log(response.id, "resoonse");
+        dispatch(form({ key: "id", value: response.id }))
+      }
+    } catch (error) {
+      console.error("Error in hospitalForms:", error);
+    }
   };
   return (
     <section className="general-info">
@@ -204,7 +245,7 @@ const GeneralInfo = () => {
                     <div className="col col-4">
                       <TextInput
                         value={formData.bedsNumber}
-                        label="Toatal Number of Beds"
+                        label="Total Number of Beds"
                         required={true}
                         onChange={(value) => {
                           formHandler("bedsNumber", value);
@@ -242,10 +283,10 @@ const GeneralInfo = () => {
                         value={formData.soilType}
                         label="Soil Type"
                         options={[
-                          { title: "type I" },
-                          { title: "type II" },
-                          { title: "type III" },
-                          { title: "type IV" },
+                          { title: "I" },
+                          { title: "II" },
+                          { title: "III" },
+                          { title: "IV" },
                         ]}
                         onChange={(title) => {
                           formHandler("soilType", title);
@@ -274,7 +315,7 @@ const GeneralInfo = () => {
           <div className="col col-12">
             <button
               className={`next ${allowContinue ? "" : "disable"}`}
-              onClick={allowContinue ? Next : null}
+              onClick={allowContinue ? handleButtonClick : null}
             >
               Next
             </button>
