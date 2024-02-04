@@ -1,5 +1,5 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import marker from "../../../assets/images/marker.svg";
 import orangeMarker from "../../../assets/images/orangeMarker.svg";
